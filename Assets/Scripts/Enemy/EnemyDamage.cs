@@ -1,13 +1,12 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Damage")]
     public int Damage = 25;
     public GameObject PlayerObject;
-    private bool CanTakeDamage;
+    private bool CanTakeDamage = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,7 +30,7 @@ public class Enemy : MonoBehaviour
                 {
                     playerScript.Health -= Damage; // Reduzindo a vida
                     Debug.Log("Tocou. Vida restante: " + playerScript.Health);
-                StartCoroutine(CoolDown());
+                    StartCoroutine(CoolDown());
                 }
                 else
                 {
