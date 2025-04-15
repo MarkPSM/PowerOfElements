@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private float crouchHeight = 0.5f; // Altura quando agachado
     private float crouchSpeed = 5f;  // Velocidade de transição entre agachar e desagachar
 
+    public bool canMove = true;
+
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
@@ -48,10 +50,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Input de movimento
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
         Foot = TouchingGround.position;
 
         // Ground Check
@@ -62,11 +60,16 @@ public class PlayerMovement : MonoBehaviour
         if (grounded)
         {
             rb.linearDamping = groundDrag;
+            canMove = true;
         }
         else
         {
             rb.linearDamping = 0;
         }
+
+        // Input de movimento
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
 
         // Controle de velocidade
         SpeedControl();

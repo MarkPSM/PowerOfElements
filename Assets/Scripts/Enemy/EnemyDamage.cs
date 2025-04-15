@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public GameObject PlayerObject;
     private bool CanTakeDamage = true;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,7 +32,7 @@ public class Enemy : MonoBehaviour
                     playerScript.Health -= Damage; // Reduzindo a vida
                     Debug.Log("Tocou. Vida restante: " + playerScript.Health);
                     StartCoroutine(CoolDown());
-                }
+            }
                 else
                 {
                     Debug.LogError("O script Player não foi encontrado no GameObject Player!");
